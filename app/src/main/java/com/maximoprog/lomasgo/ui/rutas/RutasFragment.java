@@ -1,4 +1,4 @@
-package com.maximoprog.lomasgo.ui.notifications;
+package com.maximoprog.lomasgo.ui.rutas;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,18 +14,17 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.maximoprog.lomasgo.R;
 
-public class NotificationsFragment extends Fragment {
+public class RutasFragment extends Fragment {
 
-    private NotificationsViewModel notificationsViewModel;
+    private RutasViewModel rutasViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        notificationsViewModel =
-                new ViewModelProvider(this).get(NotificationsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_notifications, container, false);
-
-        final TextView textView = root.findViewById(R.id.text_notifications);
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        rutasViewModel =
+                new ViewModelProvider(this).get(RutasViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        final TextView textView = root.findViewById(R.id.text_dashboard);
+        rutasViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

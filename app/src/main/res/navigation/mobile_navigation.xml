@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/navigation_rutas"
-        android:name="com.maximoprog.lomasgo.ui.dashboard.DashboardFragment"
+        android:name="com.maximoprog.lomasgo.ui.rutas.RutasFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_noticias"
-        android:name="com.maximoprog.lomasgo.ui.notifications.NotificationsFragment"
+        android:name="com.maximoprog.lomasgo.ui.noticias.NoticiasFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 
