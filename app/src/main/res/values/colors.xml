@@ -8,4 +8,16 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="color_schema">#424242</color>
+
+    <color name="material_primaryColor">#212121</color>
+    <color name="material_primaryLightColor">#484848</color>
+    <color name="material_primaryDarkColor">#000000</color>
+    <color name="material_secondaryColor">#455a64</color>
+    <color name="material_secondaryLightColor">#718792</color>
+    <color name="material_secondaryDarkColor">#1c313a</color>
+    <color name="material_primaryTextColor">#ffffff</color>
+    <color name="material_secondaryTextColor">#ffffff</color>
+
+
+
 </resources>
