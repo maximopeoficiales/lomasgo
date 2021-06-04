@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_rutas"
+        android:icon="@drawable/ic_baseline_directions_run_24"
+        android:title="@string/title_rutas" />
+
+    <item
+        android:id="@+id/navigation_noticias"
+        android:icon="@drawable/ic_baseline_fiber_new_24"
+        android:title="@string/title_noticias" />
+    <item
+        android:id="@+id/navigation_info"
+        android:icon="@drawable/ic_baseline_info_24"
+        android:title="@string/title_info" />
+
+</menu>

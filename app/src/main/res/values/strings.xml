@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">LomasGO</string>
+    <string name="title_activity_home">MainActivity</string>
+    <string name="title_home">Inicio</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_rutas">Rutas</string>
+    <string name="title_noticias">Noticias</string>
+    <string name="title_info">Info</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
