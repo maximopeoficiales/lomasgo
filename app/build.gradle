@@ -7,6 +7,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
+        multiDexEnabled true
         applicationId "com.maximoprog.lomasgo"
         minSdkVersion 16
         targetSdkVersion 30
@@ -62,5 +63,6 @@ dependencies {
     implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
 // solucion parcial
     implementation 'org.glassfish:javax.annotation:10.0-b28'
+    implementation 'androidx.multidex:multidex:2.0.1'
 
 }

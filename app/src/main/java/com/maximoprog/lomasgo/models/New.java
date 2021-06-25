@@ -5,9 +5,29 @@ import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Generated("net.hexar.json2pojo")
 @SuppressWarnings("unused")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class New {
+    @Override
+    public String toString() {
+        return "New{" +
+                "content='" + content + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", id=" + id +
+                ", image=" + image +
+                ", publishedAt='" + publishedAt + '\'' +
+                ", summary='" + summary + '\'' +
+                ", title='" + title + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                '}';
+    }
 
     @Expose
     private String content;
@@ -56,72 +76,6 @@ public class New {
 
     public String getUpdatedAt() {
         return updatedAt;
-    }
-
-    public static class Builder {
-
-        private String content;
-        private String createdAt;
-        private Long id;
-        private Image image;
-        private String publishedAt;
-        private String summary;
-        private String title;
-        private String updatedAt;
-
-        public New.Builder withContent(String content) {
-            this.content = content;
-            return this;
-        }
-
-        public New.Builder withCreatedAt(String createdAt) {
-            this.createdAt = createdAt;
-            return this;
-        }
-
-        public New.Builder withId(Long id) {
-            this.id = id;
-            return this;
-        }
-
-        public New.Builder withImage(Image image) {
-            this.image = image;
-            return this;
-        }
-
-        public New.Builder withPublishedAt(String publishedAt) {
-            this.publishedAt = publishedAt;
-            return this;
-        }
-
-        public New.Builder withSummary(String summary) {
-            this.summary = summary;
-            return this;
-        }
-
-        public New.Builder withTitle(String title) {
-            this.title = title;
-            return this;
-        }
-
-        public New.Builder withUpdatedAt(String updatedAt) {
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-        public New build() {
-            New new = new New();
-            new.content = content;
-            new.createdAt = createdAt;
-            new.id = id;
-            new.image = image;
-            new.publishedAt = publishedAt;
-            new.summary = summary;
-            new.title = title;
-            new.updatedAt = updatedAt;
-            return new;
-        }
-
     }
 
 }
