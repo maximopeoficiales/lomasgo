@@ -1,14 +1,14 @@
-package com.maximoprog.lomasgo.ui.rutas;
+package com.maximoprog.lomasgo.ui.servicios;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class RutasViewModel extends ViewModel {
+public class ServiciosViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public RutasViewModel() {
+    public ServiciosViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is dashboard fragment");
     }

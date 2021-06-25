@@ -1,4 +1,4 @@
-package com.maximoprog.lomasgo.ui.rutas;
+package com.maximoprog.lomasgo.ui.servicios;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.maximoprog.lomasgo.R;
 
-public class RutasFragment extends Fragment {
+public class ServiciosFragment extends Fragment {
 
-    private RutasViewModel rutasViewModel;
+    private ServiciosViewModel serviciosViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        rutasViewModel =
-                new ViewModelProvider(this).get(RutasViewModel.class);
+        serviciosViewModel =
+                new ViewModelProvider(this).get(ServiciosViewModel.class);
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
         final TextView textView = root.findViewById(R.id.text_dashboard);
-        rutasViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        serviciosViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

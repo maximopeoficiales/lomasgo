@@ -12,8 +12,8 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_rutas"
-        android:name="com.maximoprog.lomasgo.ui.rutas.RutasFragment"
+        android:id="@+id/navigation_servicios"
+        android:name="com.maximoprog.lomasgo.ui.servicios.ServiciosFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
