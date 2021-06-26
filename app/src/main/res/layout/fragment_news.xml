@@ -8,8 +8,8 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/paperOpenLottie"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:visibility="visible"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
@@ -20,5 +20,10 @@
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_rawRes="@raw/newpaper_open"
          />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/newsRV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

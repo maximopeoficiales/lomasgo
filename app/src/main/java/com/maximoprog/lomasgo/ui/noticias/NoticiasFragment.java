@@ -6,15 +6,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.maximoprog.lomasgo.api.services.NewService;
 import com.maximoprog.lomasgo.databinding.FragmentNewsBinding;
 import com.maximoprog.lomasgo.models.New;
+import com.maximoprog.lomasgo.ui.adapters.NewAdapter;
 import com.maximoprog.lomasgo.utils.Alert;
 import com.maximoprog.lomasgo.utils.HandlerUtilitity;
 
@@ -33,13 +36,27 @@ public class NoticiasFragment extends Fragment {
     FragmentNewsBinding binding;
     private NoticiasViewModel noticiasViewModel;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        noticiasViewModel =
-                new ViewModelProvider(this).get(NoticiasViewModel.class);
+    //    adaptador
+    private RecyclerView recyclerView;
+    private NewAdapter newAdapter;
+
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        noticiasViewModel = new ViewModelProvider(this).get(NoticiasViewModel.class);
         binding = FragmentNewsBinding.inflate(inflater, container, false);
 
         context = container.getContext();
+//        instancia de adaptador
+        newAdapter = new NewAdapter(context, new NewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(New noticia, int position) {
+                onClickItem(position);
+            }
+        });
+        this.binding.newsRV.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
+        this.binding.newsRV.setLayoutManager(layoutManager);
+        this.binding.newsRV.setAdapter(newAdapter);
+        this.binding.newsRV.setItemAnimator(new DefaultItemAnimator());
 //        se ejecutara a los 3500
         HandlerUtilitity.setTimeOut(new Runnable() {
             @Override
@@ -68,24 +85,28 @@ public class NoticiasFragment extends Fragment {
                     public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
                         disposables.add(d);
                     }
+
                     @Override
                     public void onNext(@io.reactivex.rxjava3.annotations.NonNull List<New> news) {
-                        Log.d(TAG, "Estoy en onNext");
-                        for (New noticia : news) {
-                            Log.d(TAG, noticia.toString());
-                        }
+                        newAdapter.addNews(news);
                         Alert.showMessageSuccess(context, "Existen " + news.size() + " NOTICIAS");
                         binding.paperOpenLottie.setVisibility(View.GONE);
                     }
+
                     @Override
                     public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
                         Log.d(TAG, "Estoy en onERROR");
                         Alert.showMessageError(context, "Ocurrio un error" + e.getMessage() + " NOTICIAS");
                     }
+
                     @Override
                     public void onComplete() {
 
                     }
                 });
+    }
+
+    public void onClickItem(int position) {
+        Alert.showMessage(context, "Es el: " + position);
     }
 }

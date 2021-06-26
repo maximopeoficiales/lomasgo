@@ -67,5 +67,6 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
 //    lottie animaciones
     implementation 'com.airbnb.android:lottie:3.7.0'
-
+// manejo de imagenes picasso
+    implementation 'com.squareup.picasso:picasso:2.5.2'
 }

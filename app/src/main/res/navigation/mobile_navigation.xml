@@ -15,7 +15,7 @@
         android:id="@+id/navigation_servicios"
         android:name="com.maximoprog.lomasgo.ui.servicios.ServiciosFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_services" />
 
     <fragment
         android:id="@+id/navigation_noticias"
