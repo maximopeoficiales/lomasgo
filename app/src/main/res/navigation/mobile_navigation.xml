@@ -21,7 +21,7 @@
         android:id="@+id/navigation_noticias"
         android:name="com.maximoprog.lomasgo.ui.noticias.NoticiasFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_news" />
 
     <fragment
         android:id="@+id/navigation_info"

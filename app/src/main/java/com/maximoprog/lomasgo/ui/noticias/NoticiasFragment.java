@@ -6,18 +6,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.maximoprog.lomasgo.R;
 import com.maximoprog.lomasgo.api.services.NewService;
+import com.maximoprog.lomasgo.databinding.FragmentNewsBinding;
 import com.maximoprog.lomasgo.models.New;
+import com.maximoprog.lomasgo.utils.Alert;
+import com.maximoprog.lomasgo.utils.HandlerUtilitity;
 
 import java.util.List;
 
@@ -31,24 +30,26 @@ public class NoticiasFragment extends Fragment {
     public final CompositeDisposable disposables = new CompositeDisposable();
     public NewService newService = new NewService();
     public Context context;
+    FragmentNewsBinding binding;
     private NoticiasViewModel noticiasViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         noticiasViewModel =
                 new ViewModelProvider(this).get(NoticiasViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_notifications, container, false);
+        binding = FragmentNewsBinding.inflate(inflater, container, false);
+
         context = container.getContext();
-        final TextView textView = root.findViewById(R.id.text_notifications);
-        noticiasViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+//        se ejecutara a los 3500
+        HandlerUtilitity.setTimeOut(new Runnable() {
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public void run() {
+                //        obtengo todas la noticias
+                getNews();
             }
-        });
-//        obtengo todas la noticias
-        getNews();
-        return root;
+        }, 3500);
+
+        return binding.getRoot();
     }
 
     @Override
@@ -67,22 +68,20 @@ public class NoticiasFragment extends Fragment {
                     public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
                         disposables.add(d);
                     }
-
                     @Override
                     public void onNext(@io.reactivex.rxjava3.annotations.NonNull List<New> news) {
                         Log.d(TAG, "Estoy en onNext");
                         for (New noticia : news) {
                             Log.d(TAG, noticia.toString());
                         }
-                        Toast.makeText(context, "Existen " + news.size() + " NOTICIAS", Toast.LENGTH_SHORT).show();
+                        Alert.showMessageSuccess(context, "Existen " + news.size() + " NOTICIAS");
+                        binding.paperOpenLottie.setVisibility(View.GONE);
                     }
-
                     @Override
                     public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
                         Log.d(TAG, "Estoy en onERROR");
-                        Toast.makeText(context, "Existen " + e.getMessage() + " NOTICIAS", Toast.LENGTH_SHORT).show();
+                        Alert.showMessageError(context, "Ocurrio un error" + e.getMessage() + " NOTICIAS");
                     }
-
                     @Override
                     public void onComplete() {
 
