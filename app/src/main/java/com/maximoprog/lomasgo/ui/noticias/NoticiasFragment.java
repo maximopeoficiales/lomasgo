@@ -1,6 +1,7 @@
 package com.maximoprog.lomasgo.ui.noticias;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.maximoprog.lomasgo.NoticiaDetalleActivity;
 import com.maximoprog.lomasgo.api.services.NewService;
 import com.maximoprog.lomasgo.databinding.FragmentNewsBinding;
 import com.maximoprog.lomasgo.models.New;
@@ -50,6 +52,13 @@ public class NoticiasFragment extends Fragment {
             @Override
             public void onItemClick(New noticia, int position) {
                 onClickItem(position);
+                Intent intent = new Intent(
+                        context, NoticiaDetalleActivity.class
+                );
+//                le pasa el item osea el objecto como parametro
+                intent.putExtra("new", noticia);
+//                inicia la actividad
+                startActivity(intent);
             }
         });
         this.binding.newsRV.setHasFixedSize(true);

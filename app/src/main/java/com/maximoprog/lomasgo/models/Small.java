@@ -1,12 +1,15 @@
 
 package com.maximoprog.lomasgo.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 
 @Generated("net.hexar.json2pojo")
 @SuppressWarnings("unused")
-public class Small {
+public class Small implements Parcelable {
 
     @Expose
     private String ext;
@@ -99,4 +102,60 @@ public class Small {
         this.width = width;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.ext);
+        dest.writeString(this.hash);
+        dest.writeValue(this.height);
+        dest.writeString(this.mime);
+        dest.writeString(this.name);
+        dest.writeString(this.path);
+        dest.writeValue(this.size);
+        dest.writeString(this.url);
+        dest.writeValue(this.width);
+    }
+
+    public void readFromParcel(Parcel source) {
+        this.ext = source.readString();
+        this.hash = source.readString();
+        this.height = (Long) source.readValue(Long.class.getClassLoader());
+        this.mime = source.readString();
+        this.name = source.readString();
+        this.path = source.readString();
+        this.size = (Double) source.readValue(Double.class.getClassLoader());
+        this.url = source.readString();
+        this.width = (Long) source.readValue(Long.class.getClassLoader());
+    }
+
+    public Small() {
+    }
+
+    protected Small(Parcel in) {
+        this.ext = in.readString();
+        this.hash = in.readString();
+        this.height = (Long) in.readValue(Long.class.getClassLoader());
+        this.mime = in.readString();
+        this.name = in.readString();
+        this.path = in.readString();
+        this.size = (Double) in.readValue(Double.class.getClassLoader());
+        this.url = in.readString();
+        this.width = (Long) in.readValue(Long.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator<Small> CREATOR = new Parcelable.Creator<Small>() {
+        @Override
+        public Small createFromParcel(Parcel source) {
+            return new Small(source);
+        }
+
+        @Override
+        public Small[] newArray(int size) {
+            return new Small[size];
+        }
+    };
 }

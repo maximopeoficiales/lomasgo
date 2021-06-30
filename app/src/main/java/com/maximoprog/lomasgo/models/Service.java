@@ -1,13 +1,16 @@
 
 package com.maximoprog.lomasgo.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 @Generated("net.hexar.json2pojo")
 @SuppressWarnings("unused")
-public class Service {
+public class Service implements Parcelable {
 
     @SerializedName("created_at")
     private String createdAt;
@@ -100,4 +103,60 @@ public class Service {
         this.updatedAt = updatedAt;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.createdAt);
+        dest.writeString(this.description);
+        dest.writeValue(this.id);
+        dest.writeParcelable(this.image, flags);
+        dest.writeString(this.latitude);
+        dest.writeString(this.longitude);
+        dest.writeString(this.name);
+        dest.writeString(this.publishedAt);
+        dest.writeString(this.updatedAt);
+    }
+
+    public void readFromParcel(Parcel source) {
+        this.createdAt = source.readString();
+        this.description = source.readString();
+        this.id = (Long) source.readValue(Long.class.getClassLoader());
+        this.image = source.readParcelable(Image.class.getClassLoader());
+        this.latitude = source.readString();
+        this.longitude = source.readString();
+        this.name = source.readString();
+        this.publishedAt = source.readString();
+        this.updatedAt = source.readString();
+    }
+
+    public Service() {
+    }
+
+    protected Service(Parcel in) {
+        this.createdAt = in.readString();
+        this.description = in.readString();
+        this.id = (Long) in.readValue(Long.class.getClassLoader());
+        this.image = in.readParcelable(Image.class.getClassLoader());
+        this.latitude = in.readString();
+        this.longitude = in.readString();
+        this.name = in.readString();
+        this.publishedAt = in.readString();
+        this.updatedAt = in.readString();
+    }
+
+    public static final Parcelable.Creator<Service> CREATOR = new Parcelable.Creator<Service>() {
+        @Override
+        public Service createFromParcel(Parcel source) {
+            return new Service(source);
+        }
+
+        @Override
+        public Service[] newArray(int size) {
+            return new Service[size];
+        }
+    };
 }
