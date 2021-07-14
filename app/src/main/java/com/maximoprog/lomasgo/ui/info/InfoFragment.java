@@ -93,4 +93,12 @@ public class InfoFragment extends Fragment {
                     }
                 });
     }
+
+    @Override
+    public void onDestroy() {
+        if (disposables != null) {
+            disposables.clear();
+        }
+        super.onDestroy();
+    }
 }

@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 //           setContentView(R.layout.activity_main);
-//        getSupportActionBar().hide();
+        getSupportActionBar().hide();
 
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.desplazamiento_arriba);
         Animation animation2 = AnimationUtils.loadAnimation(this, R.anim.desplazamiento_abajo);

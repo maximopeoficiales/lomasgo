@@ -50,7 +50,7 @@ public class NoticiasFragment extends Fragment {
         newAdapter = new NewAdapter(context, new NewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(New noticia, int position) {
-                onClickItem(position);
+//                onClickItem(position);
                 Intent intent = new Intent(
                         context, NoticiaDetalleActivity.class
                 );
@@ -72,7 +72,7 @@ public class NoticiasFragment extends Fragment {
                 //        obtengo todas la noticias
                 getNews();
             }
-        }, 3500);
+        }, 2500);
 
         return binding.getRoot();
     }

@@ -19,4 +19,9 @@
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/store_location" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/servicesRV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
