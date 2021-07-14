@@ -45,7 +45,6 @@ public class NoticiasFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         noticiasViewModel = new ViewModelProvider(this).get(NoticiasViewModel.class);
         binding = FragmentNewsBinding.inflate(inflater, container, false);
-
         context = container.getContext();
 //        instancia de adaptador
         newAdapter = new NewAdapter(context, new NewAdapter.OnItemClickListener() {
