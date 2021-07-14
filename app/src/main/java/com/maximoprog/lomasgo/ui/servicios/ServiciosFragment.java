@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.maximoprog.lomasgo.NoticiaDetalleActivity;
+import com.maximoprog.lomasgo.ServiceDetalleActivity;
 import com.maximoprog.lomasgo.api.services.ServiceService;
 import com.maximoprog.lomasgo.databinding.FragmentServicesBinding;
 import com.maximoprog.lomasgo.models.Service;
@@ -59,10 +59,10 @@ public class ServiciosFragment extends Fragment {
             public void onItemClick(Service service, int position) {
 //                onClickItem(position);
                 Intent intent = new Intent(
-                        context, NoticiaDetalleActivity.class
+                        context, ServiceDetalleActivity.class
                 );
 //                le pasa el item osea el objecto como parametro
-//                intent.putExtra("new", noticia);
+                intent.putExtra("service", service);
 //                inicia la actividad
                 startActivity(intent);
             }

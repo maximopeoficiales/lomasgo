@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Lomasgo"
         android:usesCleartextTraffic="true">
-        <activity android:name=".NoticiaDetalleActivity"></activity>
+        <activity android:name=".ServiceDetalleActivity"></activity>
+        <activity android:name=".NoticiaDetalleActivity" />
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home" />

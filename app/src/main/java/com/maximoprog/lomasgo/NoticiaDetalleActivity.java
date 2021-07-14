@@ -36,7 +36,7 @@ public class NoticiaDetalleActivity extends AppCompatActivity {
 //          muestro un msg y seteo el texto en el input
             String urlImagen = "";
             if (imageNoticia == null) {
-                urlImagen = "https://as2.ftcdn.net/jpg/01/19/98/29/500_F_119982932_Cv6iHvH4GF7qiTdSDrF37Q0hHIpVbOrd.jpg";
+                urlImagen = Credentials.URI_IMAGE_NOT_FOUND;
             } else {
                 urlImagen = Credentials.URL_API + imageNoticia.getUrl();
             }
