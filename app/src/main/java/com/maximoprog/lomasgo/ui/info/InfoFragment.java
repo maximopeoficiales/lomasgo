@@ -1,20 +1,30 @@
 package com.maximoprog.lomasgo.ui.info;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.maximoprog.lomasgo.api.services.InfoService;
 import com.maximoprog.lomasgo.databinding.FragmentInfoBinding;
 import com.maximoprog.lomasgo.enviroments.Credentials;
 import com.maximoprog.lomasgo.models.ImageSite;
 import com.maximoprog.lomasgo.models.Info;
 import com.maximoprog.lomasgo.utils.Alert;
+import com.maximoprog.lomasgo.utils.GoogleMaps;
 import com.maximoprog.lomasgo.utils.HandlerUtilitity;
 import com.squareup.picasso.Picasso;
 
@@ -32,6 +42,9 @@ public class InfoFragment extends Fragment {
     public Context context;
     FragmentInfoBinding binding;
     InfoService infoService = new InfoService();
+    Info minfo;
+    private int MY_PERMISSIONS_REQUEST_READ_CONTACTS;
+    private FusedLocationProviderClient mfusedFusedLocationProviderClient;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,6 +60,12 @@ public class InfoFragment extends Fragment {
                 getInfo();
             }
         }, 2000);
+        binding.irBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getLatLongActual();
+            }
+        });
         return binding.getRoot();
     }
 
@@ -61,6 +80,7 @@ public class InfoFragment extends Fragment {
 
                     @Override
                     public void onNext(@NonNull Info info) {
+                        minfo = info;
                         Alert.showMessageSuccess(context, "Cargado Satisficatorio");
                         binding.infoOpenLottie.setVisibility(View.GONE);
                         ImageSite imageSite = info.getImageSite();
@@ -100,5 +120,47 @@ public class InfoFragment extends Fragment {
             disposables.clear();
         }
         super.onDestroy();
+    }
+
+    private void getLatLongActual() {
+        mfusedFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context);
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_READ_CONTACTS);
+            return;
+        }
+        mfusedFusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                if (location != null) {
+//                    Alert.showMessageSuccess(context, "LAT: " + location.getLatitude() + " Long: " + location.getLongitude());
+//                    Log.e("Latitud:", location.getLatitude() + " longitude: " + location.getLongitude());
+                    Intent intent = GoogleMaps.cargarRuta(location.getLatitude(), location.getLongitude(), Double.parseDouble(minfo.getLatitude()), Double.parseDouble(minfo.getLongitude()));
+                    startActivity(intent);
+                } else {
+                    Double lat = Double.parseDouble(minfo.getLatitude());
+                    Double log = Double.parseDouble(minfo.getLongitude());
+
+                    Intent intent = GoogleMaps.cargarRuta(Credentials.LAT_HOME, Credentials.LONG_HOME, lat, log);
+
+//                    Alert.showMessageError(context, "No cargo las coordenadas, reinicie su Ubicacion por Favor");
+                    startActivity(intent);
+                }
+            }
+
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@androidx.annotation.NonNull Exception e) {
+                Alert.showMessageError(context, e.getMessage());
+            }
+        });
     }
 }
