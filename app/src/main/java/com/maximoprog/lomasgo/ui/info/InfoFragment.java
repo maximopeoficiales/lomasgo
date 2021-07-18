@@ -142,13 +142,11 @@ public class InfoFragment extends Fragment {
             public void onSuccess(Location location) {
                 if (location != null) {
 //                    Alert.showMessageSuccess(context, "LAT: " + location.getLatitude() + " Long: " + location.getLongitude());
-//                    Log.e("Latitud:", location.getLatitude() + " longitude: " + location.getLongitude());
                     Intent intent = GoogleMaps.cargarRuta(location.getLatitude(), location.getLongitude(), Double.parseDouble(minfo.getLatitude()), Double.parseDouble(minfo.getLongitude()));
                     startActivity(intent);
                 } else {
                     Double lat = Double.parseDouble(minfo.getLatitude());
                     Double log = Double.parseDouble(minfo.getLongitude());
-
                     Intent intent = GoogleMaps.cargarRuta(Credentials.LAT_HOME, Credentials.LONG_HOME, lat, log);
 
 //                    Alert.showMessageError(context, "No cargo las coordenadas, reinicie su Ubicacion por Favor");
