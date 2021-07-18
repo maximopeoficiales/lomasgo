@@ -45,9 +45,7 @@ public class ServiceDetalleActivity extends AppCompatActivity {
         View view = binding.getRoot();
         context = this;
         setContentView(view);
-
 //        virificacion de bundle
-
         Bundle bundle = getIntent().getExtras();
 
         if (bundle != null && bundle.get("service") != null) {
@@ -113,7 +111,7 @@ public class ServiceDetalleActivity extends AppCompatActivity {
                     startActivity(intent);
 
                 }else {
-                    Alert.showMessageError(context, "No cargo las coordenadas");
+                    Alert.showMessageError(context, "No cargo las coordenadas, reinicie su Ubicacion por Favor");
                 }
             }
 
