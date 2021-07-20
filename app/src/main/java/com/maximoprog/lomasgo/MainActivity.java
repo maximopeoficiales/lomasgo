@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.maximoprog.lomasgo.databinding.ActivityMainBinding;
+import com.maximoprog.lomasgo.enviroments.Credentials;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
@@ -29,9 +30,6 @@ public class MainActivity extends AppCompatActivity {
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.desplazamiento_arriba);
         Animation animation2 = AnimationUtils.loadAnimation(this, R.anim.desplazamiento_abajo);
 
-//        TextView esloganTextView = findViewById(R.id.esloganTextView);
-//        TextView titleLogoTextView = findViewById(R.id.titleLogoTextView);
-//        ImageView logoImageView = findViewById(R.id.logoImageView);
 //    asignacion de animaciones
         binding.esloganTextView.setAnimation(animation2);
         binding.titleLogoTextView.setAnimation(animation2);
@@ -44,6 +42,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 4000);
+        }, Credentials.TIME_OUT_SPLASH);
     }
 }

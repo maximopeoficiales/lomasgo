@@ -1,6 +1,7 @@
 package com.maximoprog.lomasgo.ui.noticias;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,8 +15,10 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.maximoprog.lomasgo.NoticiaDetalleActivity;
 import com.maximoprog.lomasgo.api.services.NewService;
 import com.maximoprog.lomasgo.databinding.FragmentNewsBinding;
+import com.maximoprog.lomasgo.enviroments.Credentials;
 import com.maximoprog.lomasgo.models.New;
 import com.maximoprog.lomasgo.ui.adapters.NewAdapter;
 import com.maximoprog.lomasgo.utils.Alert;
@@ -43,13 +46,20 @@ public class NoticiasFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         noticiasViewModel = new ViewModelProvider(this).get(NoticiasViewModel.class);
         binding = FragmentNewsBinding.inflate(inflater, container, false);
-
         context = container.getContext();
+        binding.textViewTitleNoticias.setVisibility(View.GONE);
 //        instancia de adaptador
         newAdapter = new NewAdapter(context, new NewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(New noticia, int position) {
-                onClickItem(position);
+//                onClickItem(position);
+                Intent intent = new Intent(
+                        context, NoticiaDetalleActivity.class
+                );
+//                le pasa el item osea el objecto como parametro
+                intent.putExtra("new", noticia);
+//                inicia la actividad
+                startActivity(intent);
             }
         });
         this.binding.newsRV.setHasFixedSize(true);
@@ -64,7 +74,7 @@ public class NoticiasFragment extends Fragment {
                 //        obtengo todas la noticias
                 getNews();
             }
-        }, 3500);
+        }, Credentials.TIME_OUT);
 
         return binding.getRoot();
     }
@@ -89,8 +99,10 @@ public class NoticiasFragment extends Fragment {
                     @Override
                     public void onNext(@io.reactivex.rxjava3.annotations.NonNull List<New> news) {
                         newAdapter.addNews(news);
-                        Alert.showMessageSuccess(context, "Existen " + news.size() + " NOTICIAS");
+//                        Alert.showMessageSuccess(context, "Existen " + news.size() + " NOTICIAS");
                         binding.paperOpenLottie.setVisibility(View.GONE);
+                        binding.textViewTitleNoticias.setVisibility(View.VISIBLE);
+
                     }
 
                     @Override

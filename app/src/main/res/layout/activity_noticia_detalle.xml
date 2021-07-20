@@ -1,37 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.info.InfoFragment">
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/infoOpenLottie"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/info_load" />
+    tools:context=".NoticiaDetalleActivity">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/infoCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="64dp"
-        android:padding="10dp"
-        android:visibility="visible"
+        android:padding="5dp"
         app:cardCornerRadius="20dp"
         app:cardElevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +26,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imagenInfoCard"
+                android:id="@+id/imagenNewCard"
                 android:layout_width="378dp"
                 android:layout_height="246dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +35,7 @@
                 tools:src="@color/black" />
 
             <TextView
-                android:id="@+id/titleInfoCard"
+                android:id="@+id/titleNewCard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -62,36 +45,32 @@
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imagenInfoCard" />
+                app:layout_constraintTop_toBottomOf="@+id/imagenNewCard" />
 
             <TextView
-                android:id="@+id/historyInfoCard"
+                android:id="@+id/sumaryNewCard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:fontFamily="@font/montserrat"
-                android:gravity="center"
-                android:padding="8dp"
+                android:padding="5dp"
                 android:text="TextView"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleInfoCard" />
+                app:layout_constraintTop_toBottomOf="@+id/titleNewCard" />
 
-            <Button
-                android:id="@+id/irBtn"
+            <TextView
+                android:id="@+id/descriptionNewCard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="4dp"
-                android:layout_marginRight="4dp"
-                android:layout_marginBottom="19dp"
-                android:paddingLeft="5dp"
-                android:text="@string/IrTextValue"
-                app:icon="@drawable/ic_baseline_directions_run_24"
-                app:layout_constraintBottom_toBottomOf="@+id/imagenInfoCard"
-                app:layout_constraintEnd_toEndOf="parent" />
-
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/montserrat"
+                android:padding="5dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sumaryNewCard" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
