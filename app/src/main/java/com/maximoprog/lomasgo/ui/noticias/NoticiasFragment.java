@@ -47,6 +47,7 @@ public class NoticiasFragment extends Fragment {
         noticiasViewModel = new ViewModelProvider(this).get(NoticiasViewModel.class);
         binding = FragmentNewsBinding.inflate(inflater, container, false);
         context = container.getContext();
+        binding.textViewTitleNoticias.setVisibility(View.GONE);
 //        instancia de adaptador
         newAdapter = new NewAdapter(context, new NewAdapter.OnItemClickListener() {
             @Override
@@ -98,8 +99,10 @@ public class NoticiasFragment extends Fragment {
                     @Override
                     public void onNext(@io.reactivex.rxjava3.annotations.NonNull List<New> news) {
                         newAdapter.addNews(news);
-                        Alert.showMessageSuccess(context, "Existen " + news.size() + " NOTICIAS");
+//                        Alert.showMessageSuccess(context, "Existen " + news.size() + " NOTICIAS");
                         binding.paperOpenLottie.setVisibility(View.GONE);
+                        binding.textViewTitleNoticias.setVisibility(View.VISIBLE);
+
                     }
 
                     @Override

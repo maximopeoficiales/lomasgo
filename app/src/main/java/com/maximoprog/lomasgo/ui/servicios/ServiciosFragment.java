@@ -49,6 +49,8 @@ public class ServiciosFragment extends Fragment {
         serviciosViewModel = new ViewModelProvider(this).get(ServiciosViewModel.class);
         binding = FragmentServicesBinding.inflate(inflater, container, false);
         context = container.getContext();
+        binding.textViewTitleService.setVisibility(View.GONE);
+
         chargingAdapter();
         return binding.getRoot();
 
@@ -97,8 +99,10 @@ public class ServiciosFragment extends Fragment {
                     @Override
                     public void onNext(@io.reactivex.rxjava3.annotations.NonNull List<Service> services) {
                         newAdapter.addServices(services);
-                        Alert.showMessageSuccess(context, "Existen " + services.size() + " Servicios");
+//                        Alert.showMessageSuccess(context, "Existen " + services.size() + " Servicios");
                         binding.servicesOpenLottie.setVisibility(View.GONE);
+                        binding.textViewTitleService.setVisibility(View.VISIBLE);
+
                     }
 
                     @Override
