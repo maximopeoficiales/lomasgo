@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.maximoprog.lomasgo.NoticiaDetalleActivity;
 import com.maximoprog.lomasgo.R;
@@ -54,6 +55,7 @@ public class SliderNoticiaAdapter extends SliderViewAdapter<SliderNoticiaAdapter
         Picasso.with(context)
                 .load(urlImagen)
                 .fit().into(viewHolder.imageViewNoticia);
+        viewHolder.imageTitleNoticia.setText(noticia.getTitle());
         viewHolder.imageViewNoticia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,10 +77,12 @@ public class SliderNoticiaAdapter extends SliderViewAdapter<SliderNoticiaAdapter
 
     public static class Holder extends SliderViewAdapter.ViewHolder {
         private ImageView imageViewNoticia;
+        private TextView imageTitleNoticia;
 
         public Holder(View itemView) {
             super(itemView);
             imageViewNoticia = itemView.findViewById(R.id.imageViewNoticia);
+            imageTitleNoticia = itemView.findViewById(R.id.imageTitleNoticia);
         }
 
 
