@@ -19,6 +19,9 @@ public class NewService {
     public Observable<List<New>> getNews() {
         return repository.getNews();
     }
+    public Observable<List<New>> getNewsTop(Integer quantity) {
+        return repository.getNewsTop(quantity);
+    }
 
     public Observable<New> getNewById(int idNew) {
         return repository.getNewById(idNew);

@@ -9,7 +9,7 @@ android {
     defaultConfig {
         multiDexEnabled true
         applicationId "com.maximoprog.lomasgo"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -73,5 +73,7 @@ dependencies {
 // manejo de imagenes picasso
     implementation 'com.squareup.picasso:picasso:2.5.2'
 
+//sliders
+    implementation 'com.github.smarteist:autoimageslider:1.4.0'
 
 }

@@ -18,5 +18,8 @@ public class ServiceService {
     public Observable<List<Service>> getServices() {
         return repository.getServices();
     }
+    public Observable<List<Service>> getServicesTop(Integer quantity) {
+        return repository.getServicesTop(quantity);
+    }
 
 }

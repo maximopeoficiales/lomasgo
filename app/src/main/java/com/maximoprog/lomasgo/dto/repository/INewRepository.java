@@ -8,12 +8,16 @@ import java.util.List;
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface INewRepository {
 
     @GET(Credentials.URI_NEWS)
     Observable<List<New>> getNews();
 
+    @GET(Credentials.URI_NEWS)
+    Observable<List<New>> getNewsTop(@Query("_limit") Integer quantity)
+            ;
     @GET(Credentials.URI_NEWS + "/{idNew}")
     Observable<New> getNewById(@Path("idNew") int idNew);
 
