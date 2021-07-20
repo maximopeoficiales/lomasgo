@@ -19,11 +19,13 @@ import com.maximoprog.lomasgo.ServiceDetalleActivity;
 import com.maximoprog.lomasgo.api.services.NewService;
 import com.maximoprog.lomasgo.api.services.ServiceService;
 import com.maximoprog.lomasgo.databinding.FragmentHomeBinding;
+import com.maximoprog.lomasgo.enviroments.Credentials;
 import com.maximoprog.lomasgo.models.New;
 import com.maximoprog.lomasgo.models.Service;
 import com.maximoprog.lomasgo.ui.adapters.CardServiceAdapter;
 import com.maximoprog.lomasgo.ui.adapters.SliderNoticiaAdapter;
 import com.maximoprog.lomasgo.utils.Alert;
+import com.maximoprog.lomasgo.utils.HandlerUtilitity;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 
@@ -81,14 +83,16 @@ public class HomeFragment extends Fragment {
         this.binding.rvCardService.setAdapter(cardServiceAdapter);
         this.binding.rvCardService.setItemAnimator(new DefaultItemAnimator());
 
-//        HandlerUtilitity.setTimeOut(new Runnable() {
-//            @Override
-//            public void run() {
-//                //        obtengo todas la noticias
-//            }
-//        }, Credentials.TIME_OUT);
-        getNews();
-        getServices();
+        HandlerUtilitity.setTimeOut(new Runnable() {
+
+            @Override
+            public void run() {
+                getNews();
+
+                //        obtengo todas la noticias
+            }
+
+        }, Credentials.TIME_OUT);
 
         return binding.getRoot();
 
@@ -108,6 +112,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onNext(@io.reactivex.rxjava3.annotations.NonNull List<New> news) {
                         sliderNoticiaAdapter.addNews(news);
+                        getServices();
 
 //                        Alert.showMessageSuccess(context, "Existen " + news.size() + " NOTICIAS");
 //                        cargarImagesSliders(news);
@@ -138,8 +143,8 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onNext(@io.reactivex.rxjava3.annotations.NonNull List<Service> services) {
                         cardServiceAdapter.addServices(services);
-                        Alert.showMessageSuccess(context, "Existen " + services.size() + " Servicios");
-//                        binding.servicesOpenLottie.setVisibility(View.GONE);
+//                        Alert.showMessageSuccess(context, "Existen " + services.size() + " Servicios");
+                        binding.homeOpenLottie.setVisibility(View.GONE);
                     }
 
                     @Override

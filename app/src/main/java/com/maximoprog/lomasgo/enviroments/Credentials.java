@@ -10,5 +10,6 @@ public final class Credentials {
     public static final Double LAT_HOME = -12.140379;
     public static final Double LONG_HOME = -76.9242382;
     public static final Integer TIME_OUT = 1500;
+    public static final Integer TIME_OUT_SPLASH = 3000;
 
 }
