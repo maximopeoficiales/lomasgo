@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.maximoprog.lomasgo.ServiceDetalleActivity;
 import com.maximoprog.lomasgo.api.services.ServiceService;
 import com.maximoprog.lomasgo.databinding.FragmentServicesBinding;
+import com.maximoprog.lomasgo.enviroments.Credentials;
 import com.maximoprog.lomasgo.models.Service;
 import com.maximoprog.lomasgo.ui.adapters.ServiceAdapter;
 import com.maximoprog.lomasgo.utils.Alert;
@@ -79,7 +80,7 @@ public class ServiciosFragment extends Fragment {
                 //        obtengo todas la noticias
                 getServices();
             }
-        }, 2500);
+        }, Credentials.TIME_OUT);
     }
 
 

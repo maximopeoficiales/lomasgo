@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.maximoprog.lomasgo.NoticiaDetalleActivity;
 import com.maximoprog.lomasgo.api.services.NewService;
 import com.maximoprog.lomasgo.databinding.FragmentNewsBinding;
+import com.maximoprog.lomasgo.enviroments.Credentials;
 import com.maximoprog.lomasgo.models.New;
 import com.maximoprog.lomasgo.ui.adapters.NewAdapter;
 import com.maximoprog.lomasgo.utils.Alert;
@@ -72,7 +73,7 @@ public class NoticiasFragment extends Fragment {
                 //        obtengo todas la noticias
                 getNews();
             }
-        }, 2500);
+        }, Credentials.TIME_OUT);
 
         return binding.getRoot();
     }

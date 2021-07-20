@@ -9,5 +9,6 @@ public final class Credentials {
     public static final String URI_IMAGE_NOT_FOUND = "https://as2.ftcdn.net/jpg/01/19/98/29/500_F_119982932_Cv6iHvH4GF7qiTdSDrF37Q0hHIpVbOrd.jpg";
     public static final Double LAT_HOME = -12.140379;
     public static final Double LONG_HOME = -76.9242382;
+    public static final Integer TIME_OUT = 1500;
 
 }

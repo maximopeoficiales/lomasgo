@@ -59,7 +59,7 @@ public class InfoFragment extends Fragment {
                 //        obtengo todas la noticias
                 getInfo();
             }
-        }, 2000);
+        }, Credentials.TIME_OUT);
         binding.irBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
